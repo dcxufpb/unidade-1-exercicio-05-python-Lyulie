@@ -33,19 +33,19 @@ IE: 244.898.500.113
 
 def test_nome_vazio():
     global nome_loja
-    nome_loja = ""
-    verifica_campo_obrigatorio("O campo logradouro do endereço é obrigatório") 
-    nome_loja = "Arcos Dourados Com. de Alimentos LTDA"
+    cupom.nome_loja = ""
+    verifica_campo_obrigatorio("O campo nome da loja é obrigatório") 
+    cupom.nome_loja = "Arcos Dourados Com. de Alimentos LTDA"
 
 def test_logradouro_vazio():
     global logradouro
-    logradouro = ""
+    cupom.logradouro = ""
     verifica_campo_obrigatorio("O campo logradouro do endereço é obrigatório")
-    logradouro = "Av. Projetada Leste"
+    cupom.logradouro = "Av. Projetada Leste"
 
 def test_numero_zero():
     global numero
-    numero = 0
+    cupom.numero = 0
     assert cupom.dados_loja() == '''Arcos Dourados Com. de Alimentos LTDA
 Av. Projetada Leste, s/n EUC F32/33/34
 Br. Sta Genebra - Campinas - SP
@@ -54,31 +54,31 @@ Loja 1317 (PDP)
 CNPJ: 42.591.651/0797-34
 IE: 244.898.500.113
 '''
-    numero = 500
+    cupom.numero = 500
 
 def test_municipio_vazio():
     global municipio
-    municipio = ""
+    cupom.municipio = ""
     verifica_campo_obrigatorio("O campo município do endereço é obrigatório")
-    municipio = "Campinas"
+    cupom.municipio = "Campinas"
 
 def test_estado_vazio():
     global estado
-    estado = ""
+    cupom.estado = ""
     verifica_campo_obrigatorio("O campo estado do endereço é obrigatório")
-    estado = "SP"
+    cupom.estado = "SP"
 
 def test_cnpj_vazio():
     global cnpj
-    cnpj = ""
+    cupom.cnpj = ""
     verifica_campo_obrigatorio("O campo CNPJ da loja é obrigatório")
-    cnpj = "42.591.651/0797-34"
+    cupom.cnpj = "42.591.651/0797-34"
 
 def test_inscricao_estadual_vazia():
     global inscricao_estadual
-    inscricao_estadual = ""
+    cupom.inscricao_estadual = ""
     verifica_campo_obrigatorio("O campo inscrição estadual da loja é obrigatório")
-    inscricao_estadual = "244.898.500.113"
+    cupom.inscricao_estadual = "244.898.500.113"
 
 def test_exercicio2_customizado():
     global nome_loja
@@ -95,19 +95,26 @@ def test_exercicio2_customizado():
     global inscricao_estadual
     
     # Defina seus próprios valores para as variáveis a seguir
-    nome_loja = ""
-    logradouro = ""
-    numero = 0
-    complemento = ""
-    bairro = ""
-    municipio = ""
-    estado = ""
-    cep = ""
-    telefone = ""
-    observacao = ""
-    cnpj = ""
-    inscricao_estadual = ""
+    cupom.nome_loja = "Aguas indaia"
+    cupom.logradouro = "Av Joana Silveira"
+    cupom.numero = 727
+    cupom.complemento = "portal"
+    cupom.bairro = "Bela Vista"
+    cupom.municipio = "Campina Grande"
+    cupom.estado = "PB"
+    cupom.cep = "58038-000"
+    cupom.telefone = "(83) 8888-7777"
+    cupom.observacao = "Fonte sul"
+    cupom.cnpj = "11.111.222/3333-44"
+    cupom.inscricao_estadual = "111.222.333.444"
 
     #E atualize o texto esperado abaixo
-    assert cupom.dados_loja() == '''
+    assert cupom.dados_loja() == \
+'''Aguas indaia
+Av Joana Silveira, 727 portal
+Bela Vista - Campina Grande - PB
+CEP:58038-000 Tel (83) 8888-7777
+Fonte sul
+CNPJ: 11.111.222/3333-44
+IE: 111.222.333.444
 '''
